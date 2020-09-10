@@ -1,6 +1,6 @@
 Este proyecto es un trabajo evaluativo para la materia Programacion Web Dinamica dictada en la carrera Tecnicatura Universitaria de Desarrollo Web en la Universidad Nacional del Comahue.
 
-Este proyecto esta bajo Licencia GNU/GLP 
+Este proyecto esta bajo Licencia GNU/GPL
 
 ### GNU GENERAL PUBLIC LICENSE
 
