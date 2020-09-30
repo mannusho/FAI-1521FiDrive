@@ -21,11 +21,15 @@ include_once("../../Estructura/cabecera.php");
                 </div>
             </div>
             <br>
-            <form action="accion.php" method="POST" id="altaymod" name="altaymod" data-toggle="validator">
+            <form action="accion.php" method="POST" id="altaymod" name="altaymod" data-toggle="validator" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-md-6 mb-3">
                         <label for="archivo">Nombre del archivo: </label>
-                        <input type="text" class="form-control" id="archivo" name="archivo" placeholder="ejemplo: 1234.png" required>
+                        <input type="text" class="form-control" id="archivoName" name="archivoName" placeholder="ejemplo: 1234.png" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="archivo">Seleccione el archivo: </label>
+                        <input type="file" class="form-control" id="archivo" name="archivo" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="archivo">Ingrese una descripcion del archivo:  </label>
@@ -75,7 +79,7 @@ include_once("../../Estructura/cabecera.php");
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="archivo">Ingrese la clave:  </label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="ingrese su clave" required>
+                            <input hidden type="password" class="form-control" id="password" name="password" placeholder="ingrese su clave" required>
                         </div>
                 </div>
                 <button type="submit" class="btn btn-dark"> enviar </button>

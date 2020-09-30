@@ -13,6 +13,9 @@
     <body>
         <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-3" style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Programacion Web Dinamica</a>
+            <<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </nav>
 
         <?php  

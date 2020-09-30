@@ -20,11 +20,15 @@ include_once("../../Estructura/cabecera.php");
                 </div>
             </div>
             <br>
-            <form action="accion.php" method="POST" id="altaymod" name="altaymod" data-toggle="validator">
+            <form action="accion.php" method="POST" id="shareFile" name="shareFile" data-toggle="validator" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-md-6 mb-3">
                         <label for="archivoCompartido">Nombre del archivo compartido: </label>
                         <input type="text" class="form-control" id="archivoCompartido" name="archivoCompartido" placeholder="ejemplo: 1234.png" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="archivo">Seleccione el archivo: </label>
+                        <input type="file" class="form-control" id="archivo" name="archivo" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="diasCompartido">Ingrese la cantidad de dias que se comparte: (si deja vacio, entendemos que no expira)  </label>
@@ -57,8 +61,8 @@ include_once("../../Estructura/cabecera.php");
                             <input type="text" class="form-control" id="link" name="link" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="diasCompartido">Generar HASH </label>
-                            <input type="buttom" class="form-control" id="hash" name="hash" required>
+                            <label for="hash">Presione para generar HASH </label><br>
+                            <button name="hash" id="hash" class="btn btn-danger btn-lg"> hash </button>
                         </div>
                 </div>
                 <button type="submit" class="btn btn-dark"> enviar </button>
