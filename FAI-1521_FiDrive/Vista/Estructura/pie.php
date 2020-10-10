@@ -13,6 +13,7 @@
         </div>
 
             <!-- jQuery and Bootstrap. -->
+<<<<<<< HEAD
         <script src='../../JS/jQuery v3.5.1/jquery-3.5.1.slim.min.js'></script>
         <!-- popper -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -28,3 +29,16 @@
          <!-- personals JS -->
          <script src="../../JS/multi-funcions.js"></script>
         
+=======
+
+        <script src='../../JS/jQuery v3.5.1/jquery-3.5.1.slim.min.js'></script>
+        <script src='../../JS/Boostrap v.4.5.2/bootstrap.min.js'></script>
+        <script src='../../JS/Boostrap v.4.5.2/bootstrapValidator.min.js'></script>
+        <!-- Archivo personal de validaciones -->
+        <script src='../../JS/Boostrap v.4.5.2/validator.js'></script>
+        
+        
+
+    </body>
+</html>
+>>>>>>> bf344e43dc3e6fce5317cbd27263f2652187ecf4

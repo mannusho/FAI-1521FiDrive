@@ -102,7 +102,10 @@ $('#delShaFile').bootstrapValidator({
     
 });
 
+<<<<<<< HEAD
 // ALTA Y MODIFICACION DE UN ARCHIVO.
+=======
+>>>>>>> bf344e43dc3e6fce5317cbd27263f2652187ecf4
 
 $('#altaymod').bootstrapValidator({
             message: 'Este valor no es valido',
@@ -143,7 +146,11 @@ $('#altaymod').bootstrapValidator({
         
                         }
         
+<<<<<<< HEAD
                     } /*,password: {
+=======
+                    },password: {
+>>>>>>> bf344e43dc3e6fce5317cbd27263f2652187ecf4
         
                         validators: {
         
@@ -155,7 +162,11 @@ $('#altaymod').bootstrapValidator({
         
                         }
         
+<<<<<<< HEAD
                     }*/
+=======
+                    }
+>>>>>>> bf344e43dc3e6fce5317cbd27263f2652187ecf4
         
                 }
         
@@ -205,6 +216,7 @@ $('#shareFile').bootstrapValidator({
             
                             validators: {
             
+<<<<<<< HEAD
                                 regexp: {
                                     
                                     regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[0-9]).{,6}$/,
@@ -223,13 +235,24 @@ $('#shareFile').bootstrapValidator({
 
                                     message: ' ¡Su contraseña es fuerte! ¡muy bien! '
                                 }, notEmpty: {
+=======
+                                notEmpty: {
+>>>>>>> bf344e43dc3e6fce5317cbd27263f2652187ecf4
             
                                     message: 'Debe ingresar una clave '
             
                                 }
+<<<<<<< HEAD
                             }
                         },hash: {
                                 
+=======
+            
+                            }
+            
+                        },hash: {
+            
+>>>>>>> bf344e43dc3e6fce5317cbd27263f2652187ecf4
                             validators: {
             
                                 notEmpty: {
@@ -243,6 +266,9 @@ $('#shareFile').bootstrapValidator({
                         }
             
                     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> bf344e43dc3e6fce5317cbd27263f2652187ecf4
             
 });
