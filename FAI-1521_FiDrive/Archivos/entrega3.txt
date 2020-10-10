@@ -1,0 +1,36 @@
+En el proyecto NroLegajoFiDrive,  agregar los siguientes controles.
+
+controles para amarchivo.php
+- Nombre del Archivo no debe quedar vaci�.
+- La descripci�n del Archivo, es contenido enriquecido, buscar un editor para cargarlo
+- Agregar siempre la siguiente descripci�n por defecto:  Esta es una descripci�n gen�rica, si lo necesita la puede cambiar.
+- El usuario debe ser Seleccionado
+El icono, deber�a ser sugerido teniendo en cuenta la extensi�n del archivo seleccionado. Todo esto usado JavaScript.
+Si el campo Clave, es igual a cero, al submitir el formulario, se debe enviar el par�metro accion = Alta, caso contrario debe enviar en el par�metro accion = Modificar
+
+
+controles para  compartirarchivo.php
+
+El usuario debe ser Seleccionado
+Si se selecciona proteger con contrase�a, se debe ingresar una contrase�a. Se debe mostrar si la contrase�a es d�bil (si son solo n�meros o letras y longitud es menor a 6) o normal ( si contiene n�meros y letras  y una longitud mayor a 6) o fuerte ( si tiene n�meros, letras y s�mbolos y una longitud mayor a 6)
+El link de descargas debe ser generado con un hash que contenga internamente un numero, la cantidad de descargas y la cantidad de  d�as. Si estos alguno de estos 2 �ltimos campos son vac�os  usar el valor  9007199254740991
+
+ 
+
+controles para  eliminararchivo.php 
+El usuario debe ser Seleccionado
+El motivo no debe quedar vaci�
+Implementar la funcionalidad de subir el archivo al servidor. 
+
+ 
+
+Crear dentro del proyecto, en la carpeta ra�z, una carpeta llamada archivos
+Crear un archivo, en la carpeta vista,  llamado contenido.php que muestre recursivamente los archivos contenidos en la carpeta llamada archivo. Este archivo debe incluir los archivos: cabecera.php, pie.php y menu.php
+Agregar al archivo  contenido.php un bot�n, que permita generar una nueva carpeta dentro de la carpeta que actualmente este seleccionada. 
+Agregar al archivo  contenido.php un bot�n, que permita cargar un archivo dentro de la carpeta actualmente este seleccionada. Este bot�n, debe llamar al formulario amarchivo.php creado en la Entrega 1. 
+Agregar al archivo  contenido.php un bot�n, que permita compartir un archivo actualmente este seleccionado. Este bot�n, debe llamar al formulario compartirarchivo.php creado en la Entrega 1. 
+Agregar al archivo  contenido.php un bot�n, que permita eliminar un archivo actualmente este seleccionado. Este bot�n, debe llamar al formulario eliminararchivo.php creado en la Entrega 1. 
+Crear un archivo, en la carpeta vista,  llamado compartidos.php que muestre recursivamente los archivos contenidos en la carpeta llamada archivo y que est�n compartidos. Este archivo debe incluir los archivos: cabecera.php, pie.php y menu.php.
+Agregar al archivo  compartidos.php un bot�n, que permita dejar de compartir un archivo actualmente compartido. Este bot�n, debe llamar al formulario eliminararchivocompartido.php creado en la Entrega 1. 
+Compartir el proyecto con los profes, usando gitHub. 
+Para la entrega, subir en un archivo el Id del commit en GitHub de la version que entregan.

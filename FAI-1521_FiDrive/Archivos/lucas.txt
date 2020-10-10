@@ -1,0 +1,1 @@
+Esto es mensaje en codigo morse 1010101010, eso es binario pelotudo.
