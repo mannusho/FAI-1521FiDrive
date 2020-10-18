@@ -13,7 +13,7 @@ include_once("../../Estructura/cabecera.php");
                     <p class="card-text">
                         Proyecto de la materia programacion web dinamica año 2020 (tambien conocido como el año de la pandemia del siglo XXI).
                     <?php
-                        echo $_GET['<id>'];
+        
                     ?>
                     
                     </p>
@@ -24,7 +24,7 @@ include_once("../../Estructura/cabecera.php");
                 </div>
             </div>
             <br>
-            <form action="amarchivo_accion.php" method="POST" id="altaymod" name="altaymod" data-toggle="validator" enctype="multipart/form-data">
+            <form action="ac_amarchivo.php" method="POST" id="altaymod" name="altaymod" data-toggle="validator" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-md-6 mb-3">
                         <label for="archivo">Nombre del archivo: </label>
@@ -36,14 +36,14 @@ include_once("../../Estructura/cabecera.php");
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="archivo">Ingrese una descripcion del archivo:  </label>
-                        <div id="summernote" name="summernote"></div>
+                        <div id="summernote" name="summernote"> Esta es una descripción genérica, si lo necesita la puede cambiar. </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="usuarioCarga">Seleccione quien carga el archivo: </label>
                                 <select class="custom-select d-block w-100" id="usuarioCarga" name="usuarioCarga" required>
-                                    <option value="comedia">admin</option>
-                                    <option value="terror">visitante</option>
-                                    <option value="accion">yo</option>
+                                    <option value="admin">admin</option>
+                                    <option value="visitante">visitante</option>
+                                    <option value="yo">yo</option>
                                 </select>
                     </div>
                         <div class="col-md-6 mb-3">Seleccione icono que se va a utilizar: 
@@ -81,7 +81,7 @@ include_once("../../Estructura/cabecera.php");
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input type="password" class="form-control" id="id" name="id" hidden>
+                        <input type="hidden" class="form-control" id="id" name="id" value="0" >';
                         </div>
                 </div>
                 <button type="submit" class="btn btn-dark"> enviar </button>

@@ -3,7 +3,6 @@
 /* Summernote.org */
 
 $('#summernote').summernote({
-    placeholder: 'Esta es una descripción genérica, si lo necesita la puede cambiar.',
     tabsize: 2,
     height: 100
 });
@@ -19,20 +18,24 @@ Un Campo para cargar la contraseña en caso que se seleccione esta opción.
 
 */
 $('#password').keyup(function (e) {
-    var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
-    var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
-    var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+    var strongRegex = new RegExp("^(?=.{6,})(?=.*[#$^+=!*()@%&])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+    var mediumRegex = new RegExp("^(?=.{6,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+    var lowRegex = new RegExp("^(?=.{,6})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+    var enoughRegex = new RegExp("(?=.{,5}).*", "g");
     if (false == enoughRegex.test($(this).val())) {
         $('#passstrength').html('Más caracteres.');
-    } else if (strongRegex.test($(this).val())) {
+    } else if (lowRegex.test($(this).val())) {
         $('#passstrength').className = 'ok';
-        $('#passstrength').html('Fuerte!');
+        $('#passstrength').html('Su contrase&ntilde;a es debil :(');
     } else if (mediumRegex.test($(this).val())) {
         $('#passstrength').className = 'alert';
-        $('#passstrength').html('Media!');
+        $('#passstrength').html('Su contrase&ntilde;a es aceptable :)');
+    } else if (strongRegex.test($(this).val())) {
+            $('#passstrength').className = 'alert';
+            $('#passstrength').html('Su contrase&ntilde;a es fuerte :D)');
     } else {
         $('#passstrength').className = 'error';
-        $('#passstrength').html('Débil!');
+        $('#passstrength').html('Ingrese una password valida (minimo de 6 caracteres con letras, numeros y simbolos');
     }
     return true;
 });
@@ -124,7 +127,7 @@ function generarHash() {
     var numeroEntero = round(numeroRandom);
     //var nombre = document.getElementById("customFileLang");
     //var nombreArchivo = nombre.files[0].name;
-    var dias = document.getElementById("diasCompartido").value;
+    var dias = document.getElementById("diasCompartidos").value;
     var descargas = document.getElementById("descargas").value;
 
     if (dias == 0 && descargas == 0) {

@@ -7,6 +7,11 @@
                             <span class="badge badge-secondary" style="margin: 8px;"> <i class='fas fa-code'></i> FAI 1521 </span>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="../Principal/contenido.php">  
+                                <span style="color: white;"><i class='far fa-bookmark' style="color: white;"></i> Contenido </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="../Principal/compartidos.php">  
                                 <span style="color: white;"><i class='far fa-bookmark' style="color: white;"></i> Archivos Compartidos </span>
                                 </a>

@@ -1,15 +1,17 @@
 <?php 
-    $Titulo = " Alta y modificacion de un archivo "; 
+    $Titulo = " Eliminar un archivo compartido "; 
     include_once("../../Estructura/cabecera.php");
+    include_once("../../../Control/Control.php");
+
 ?>
 <div>
     <?php 
 
         $datos = data_submitted();
-        $obj = new Control_altaYMod();
+        $obj = new Controles();
         //print_r($datos);
 
-        $respuesta = $obj->verInformacion($datos);
+        $respuesta = $obj->eliminarCompartidoArchivo($datos);
 
     ?>
 

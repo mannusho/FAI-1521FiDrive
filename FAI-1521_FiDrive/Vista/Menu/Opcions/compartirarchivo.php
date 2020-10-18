@@ -20,7 +20,7 @@ include_once("../../Estructura/cabecera.php");
                 </div>
             </div>
             <br>
-            <form action="accion.php" method="POST" id="shareFile" name="shareFile" data-toggle="validator" enctype="multipart/form-data">
+            <form action="ac_compartirarchivo.php" method="POST" id="shareFile" name="shareFile" data-toggle="validator" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-md-6 mb-3">
                         <label for="archivoCompartido">Nombre del archivo compartido: </label>

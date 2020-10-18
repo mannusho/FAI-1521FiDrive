@@ -1,15 +1,18 @@
 <?php 
-    $Titulo = " Compartir un archivo"; 
+    $Titulo = " Alta y modificacion de un archivo "; 
     include_once("../../Estructura/cabecera.php");
+    include_once("../../../Control/Control.php");
+
 ?>
 <div>
     <?php 
 
         $datos = data_submitted();
-        $obj = new Control_Compartir();
-        //print_r($datos);
+        $obj = new Controles();
+        
+        print_r($datos);
 
-        $respuesta = $obj->verInformacion($datos);
+        $respuesta = $obj->cargaArchivo($datos);
 
     ?>
 

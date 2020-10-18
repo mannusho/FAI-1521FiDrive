@@ -1,14 +1,15 @@
 <?php 
 $Titulo = " Pagina Principal "; 
 include_once("../../Estructura/cabecera.php");
+include_once("../../../Control/Control.php");
+
 ?>
 
 <!-- Obtencion de archivos -->
 
 <?php
-$obj = new ControlAlta();
-$arreglo = $obj->obtenerArchivos();
-
+    $obj = new Controles();
+    $arreglo = $obj->obtenerArchivos();
 ?>
 
 
@@ -51,7 +52,6 @@ $arreglo = $obj->obtenerArchivos();
                             {   
                                 if (strlen($archivo) > 2) {
                                 echo    "<div class='col-md-6 mb-3'>";
-                                echo        "<label Archivo tipo".$archivo."['file']</label><br>";
                                 echo        $archivo;
                                 echo        "<small class='form-text text-muted'/> Esto archivo se subio y esta re bueno </small><br>";
                                 echo        " ";

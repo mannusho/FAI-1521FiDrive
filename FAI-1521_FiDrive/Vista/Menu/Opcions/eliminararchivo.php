@@ -20,7 +20,7 @@
                 </div>
             </div>
             <br>
-            <form action="accion.php" method="POST" id="delfile" name="delfile" data-toggle="validator">
+            <form action="ac_eliminararchivo.php" method="POST" id="delfile" name="delfile" data-toggle="validator">
                 <div class="form-group row">
                     <div class="col-md-6 mb-3">
                         <label for="archivoCompartido">Nombre del archivo compartido: </label>

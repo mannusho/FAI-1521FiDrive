@@ -21,7 +21,7 @@ include_once("../../Estructura/cabecera.php");
                 </div>
             </div>
             <br>
-            <form action="accion.php" method="POST" id="delShaFile" name="delShaFile" data-toggle="validator">
+            <form action="ac_eliminararchivocompartido.php" method="POST" id="delShaFile" name="delShaFile" data-toggle="validator">
                 <div class="form-group row">
                     <div class="col-md-6 mb-3">
                         <label for="archivoCompartido">Nombre del archivo compartido: </label>
