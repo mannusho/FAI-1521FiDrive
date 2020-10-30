@@ -6,16 +6,17 @@
     class Controles
     {
         public function cargaArchivo ($datos){
-            $dir = '../../../Archivos/';
+            $dir = '../../../../Archivos/';
 
             if ($_FILES['archivo']["error"] <= 0) {
-
+                    $error = 0;
+                    
                     $name = $_FILES['archivo']['name'];
                     $type = $_FILES['archivo']['type'];
                     $size = ($_FILES['archivo']["size"] / 1024); // En KiB
                     
                     // verificamos que el archivo sea de los tipos que se solicito.
-                    if($type != "image/jpeg" && $type != "image/png" && $type != "image/gif" && $type != "application/x-rar-compressed" && $type != "application/zip" && $type != "application/vnd.ms-excel" && $type != "application/pdf" && $type != "application/msword"){
+                    if($type != "image/jpg" && $type != "image/jpeg" && $type != "image/png" && $type != "image/gif" && $type != "application/x-rar-compressed" && $type != "application/zip" && $type != "application/vnd.ms-excel" && $type != "application/pdf" && $type != "application/msword"){
                          $error = 1;
                      }
 
@@ -40,22 +41,8 @@
 
         }
 
-        public function modificaArchivo ($datos){
-
-        }
-
-        public function EliminaArchivo ($datos){
-
-        }
-
-        public function compartirArchivo ($datos){
-
-        }
-
-        public function eliminarCompartidoArchivo ($datos){
-
-        }
-
+        /*
+        * Ya no se utiliza * 
         public function crearDirectorio($datos){
             
             $base = "/Vista/Archivos/";
@@ -96,7 +83,7 @@
             $finfo = new finfo(FILEINFO_MIME); // Devuelve el tipo mime
     
             /*Voy a devolver las observaciones en el arreglo
-            Se que las observaciones se guardan en un archivo .txt que tiene en el nombre el sufijo "OBS*/
+            Se que las observaciones se guardan en un archivo .txt que tiene en el nombre el sufijo "OBS
     
             $observaciones="";
             if (file_exists ($directorio.$nombreArchivoObservaciones ))
@@ -107,7 +94,7 @@
     
             }
     
-            /*Y ahora voy a ver si hay un PDF, si hay, voy a devolver true*/
+            /*Y ahora voy a ver si hay un PDF, si hay, voy a devolver true
             $hayArchivo=file_exists ($directorio.$nombreArchivoPDF );
     
             $datosArch= [
@@ -125,7 +112,7 @@
     
             //finfo_close($finfo);
     
-            return $datosArch;
-        }
+            return $datosArch; 
+        } */
     }
 ?> 

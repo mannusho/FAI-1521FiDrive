@@ -20,8 +20,8 @@
         </nav>
 
         <?php  
-            include_once("../../../configuracion.php");
-            include_once("../../Estructura/menu.php");
+            include_once("../../../../configuracion.php");
+            include_once("../../../Estructura/menu.php");
         ?>
 
 
