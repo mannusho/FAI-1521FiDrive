@@ -26,13 +26,15 @@ class AbmArchivoCargado{
         if(array_key_exists('acNombre',$param) and array_key_exists('acDescripcion',$param) and array_key_exists('acIcono',$param) and array_key_exists('idUsuario',$param) and array_key_exists('acLinkAcceso',$param) and array_key_exists('acCantidadDescarga',$param) and array_key_exists('acCantidadUsada',$param) and array_key_exists('acFechaInicioCompartir',$param) and array_key_exists('AceFechaFinCompartir',$param) and array_key_exists('acProtegidoClave',$param)){
             echo " \n entro al if \n"; 
             $obj = new ArchivoCargado();
-            $obj->setear($param['idArchivoCargado'], $param['acNombre'], $param['acDescripcion'],
-             $param['acIcono'], $param['idUsuario'], $param['acLinkAcceso'], $param['acCantidadDescarga'],
-              $param['acCantidadUsada'], $param['acFechaInicioCompartir'], $param['AceFechaFinCompartir'],
-               $param['acProtegidoClave']);
+            $obj->setear($param['idarchivocargado'], $param['acnombre'], $param['acdescripcion'], 
+               $param['acicono'], $param['idusuario'], $param['aclinkacceso'], $param['accantidaddescarga'], 
+               $param['accantidadusada'], $param['acfechainiciocompartir'], 
+               $param['acefechafincompartir'], $param['acprotegidoclave']);
+
+               
         }
-        print_r($obj);
-        echo " \n sali del if \n";
+        //print_r($obj);
+        //echo " \n sali del if \n";
         return $obj;
     }
 
@@ -72,7 +74,7 @@ class AbmArchivoCargado{
     public function alta($param){
         $resp = false;
         $objCargado =  $this->cargarObjeto($param);
-        echo "\n \n llegue aca  \n \n";
+        //echo "\n \n llegue aca  \n \n";
         if($objCargado =! null && $objCargado->insertar()){
             $resp = true;
             $objEstadoTiposAbm = new AbmArchivoCargadoEstado();

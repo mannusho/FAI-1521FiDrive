@@ -230,7 +230,7 @@ class ArchivoCargado {
     public static function listar($parametro=""){
         $arreglo = array();
         $base=new BaseDatos();
-        $sql="SELECT * FROM auto ";
+        $sql="SELECT * FROM archivocargado ";
         if ($parametro!="") {
             $sql.='WHERE '.$parametro;
         }
@@ -247,7 +247,7 @@ class ArchivoCargado {
             }
             
         } else {
-            $this->setmensajeoperacion("Auto->listar: ".$base->getError());
+            $this->setmensajeoperacion("archivocargado->listar: ".$base->getError());
         }
  
         return $arreglo;
