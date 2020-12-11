@@ -9,8 +9,8 @@ class EstadoTipos {
     public function __construct(){
         
         $this->idestadotipos="";
-        $this->etdescripcion="";
-        $this->etactivo="";
+        $this->etdescripcion=""; 
+        $this->etactivo= 1; // Como el valor es siempre el mismo, lo dejamos asi.
         $this->mensajeoperacion ="";
     }
     public function setear($idEstadoTipos, $etDescripcion, $etActivo)    {
@@ -81,7 +81,7 @@ class EstadoTipos {
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO estadotipos(idestadotipos, etdescripcion, etactivo)  VALUES('".$this->getIdEstadoTipos()."','".$this->getEtDescripcion()."','".$this->getEtActivo()."');";
+        $sql="INSERT INTO estadotipos( etdescripcion, etactivo)  VALUES('".$this->getEtDescripcion()."','".$this->getEtActivo()."');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdEstadoTipos($elid);

@@ -1,0 +1,23 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+a:link{
+    font-style: initial;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+a:visited{
+    font-style: initial;
+    color:#585858;
+    text-decoration: none;
+}
+
+a:active{
+    font-style: initial;
+    color:#585858;
+    text-decoration: none;
+}
+
+

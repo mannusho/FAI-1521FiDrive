@@ -1,0 +1,9 @@
+User : mannusho (Administrador)
+
+Pass: hola1234.
+
+
+
+User: lookas (Visitante)
+
+Pass: chau1234.

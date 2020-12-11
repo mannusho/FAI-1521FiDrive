@@ -1,5 +1,13 @@
 <?php 
+
+include_once("estadotipos.php");
+include_once("usuario.php");
+include_once("archivocargado.php");
+
 class ArchivoCargadoEstado {
+
+    // NOTA: si es un id, es porque entra un objeto.
+
     private $idarchivocargadoestado;
     private $idestadotipos;
     private $acedescripcion;
@@ -13,12 +21,12 @@ class ArchivoCargadoEstado {
     public function __construct(){
         
         $this->idarchivocargadoestado="";
-        $this->idestadotipos="";
+        $this->idestadotipos= new EstadoTipos();
         $this->acedescripcion="";
-        $this->idusuario="";
+        $this->idusuario= new Usuario();
         $this->acefechaingreso="";
         $this->acefechafin="";
-        $this->idarchivocargado="";
+        $this->idarchivocargado= new ArchivoCargado();
         $this->mensajeoperacion ="";
     }
     public function setear($idArchivoCargadoEstado, $idEstadoTipos, $aceDescripcion, $idUsuario, $aceFechaIngreso, $aceFechaFin, $idArchivoCargado)    {
@@ -28,7 +36,7 @@ class ArchivoCargadoEstado {
         $this->setIdUsuario($idUsuario);
         $this->setAceFechaIngreso($aceFechaIngreso);
         $this->setAceFechaFin($aceFechaFin);
-        $this->setAceFechaFin($idArchivoCargado);
+        $this->setIdArchivocargado($idArchivoCargado);
     }
     
     
@@ -78,20 +86,20 @@ class ArchivoCargadoEstado {
     }
 
     public function getIdArchivocargado(){
-        return $this->acefechafin;
+        return $this->idarchivocargado;
         
     }
-    public function setIdArchivocargado($aceFechaFin){
-        $this->acefechafin = $aceFechaFin;
+    public function setIdArchivocargado($idArchivoCargado){
+        $this->idarchivocargado = $idArchivoCargado;
         
     }
 
     public function getAceFechaFin(){
-        return $this->idarchivocargado;
+        return $this->acefechafin;
         
     }
-    public function setAceFechaFin($idArchivoCargado){
-        $this->idarchivocargado = $idArchivoCargado;
+    public function setAceFechaFin($aceFechaFin){
+        $this->acefechafin = $aceFechaFin;
         
     }
 
@@ -115,7 +123,30 @@ class ArchivoCargadoEstado {
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
-                    $this->setear($row['archivocargadoestado'], $row['idestadotipos'], $row['acedescripcion'], $row['idusuario'], $row['acefechaingreso'], $row['acefechafin'], $row['idarchivocargado']);
+
+                    $estadoTipos = NULL; 
+                    if ($row['idestadotipos'] != null) { 
+                        $estadoTipos = new EstadoTipos(); 
+                        $estadoTipos->setIdEstadoTipos($row['idestadotipos']); 
+                        $estadoTipos->cargar(); 
+                    }
+                
+                    $usuario = NULL; 
+                    if ($row['idusuario'] != null) { 
+                        $usuario = new Usuario(); 
+                        $usuario->setIdusuario($row['idusuario']); 
+                        $usuario->cargar(); 
+                    }
+
+                    $archivoCargado = NULL; 
+                    if ($row['idarchivocargado'] != null) { 
+                        $archivoCargado = new ArchivoCargado();
+                        $archivoCargado->setIdArchivoCargado($row['idarchivocargado']); 
+                        $archivoCargado->cargar(); 
+                    }
+
+
+                    $this->setear($row['idarchivocargadoestado'], $estadoTipos->getIdEstadoTipos(), $row['acedescripcion'], $usuario->getIdUsuario(), $row['acefechaingreso'], $row['acefechafin'], $archivoCargado->getIdArchivoCargado());
                     
                 }
             }
@@ -130,7 +161,11 @@ class ArchivoCargadoEstado {
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO archivocargadoestado(idarchivocargadoestado, idestadotipos, acedescripcion, idusuario, acefechaingreso, acefechafin, idarchivocargado)  VALUES('".$this->getIdArchivoCargadoEstado()."','".$this->getIdEstadoTipos()."','".$this->getAceDescripcion()."','".$this->getIdUsuario()."','".$this->getAceFechaIngreso()."','".$this->getAceFechaFin()."','".$this->getIdArchivocargado()."');";
+        $sql="INSERT INTO archivocargadoestado(idestadotipos, acedescripcion,
+         idusuario, acefechaingreso, acefechafin, idarchivocargado)  
+         VALUES('".$this->getIdEstadoTipos()->getIdEstadoTipos()."',
+         '".$this->getAceDescripcion()."','".$this->getIdUsuario()->getIdUsuario()."','".$this->getAceFechaIngreso()."',
+         '".$this->getAceFechaFin()."','".$this->getIdArchivocargado()->getIdArchivoCargado()."');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdArchivoCargadoEstado($elid);
@@ -147,7 +182,13 @@ class ArchivoCargadoEstado {
     public function modificar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="UPDATE archivocargadoestado SET idarchivocargadoestado='".$this->getIdArchivoCargadoEstado()."', idestadotipos='".$this->getIdEstadoTipos()."', acedescripcion='".$this->getAceDescripcion()."', idusuario='".$this->getIdUsuario()."', acefechaingreso='".$this->getAceFechaIngreso()."', acefechafin='".$this->getAceFechaFin()."', idarchivocargado='".$this->getIdArchivocargado()."' WHERE idarchivocargadoestado=".$this->getIdArchivoCargadoEstado();
+        $sql="UPDATE archivocargadoestado SET idestadotipos='".$this->getIdEstadoTipos()->getIdEstadoTipos()."',
+         acedescripcion='".$this->getAceDescripcion()."',
+          idusuario='".$this->getIdUsuario()->getIdUsuario()."',
+           acefechaingreso='".$this->getAceFechaIngreso()."',
+           acefechafin='".$this->getAceFechaFin()."',
+            idarchivocargado='".$this->getIdArchivocargado()->getIdArchivoCargado()."' 
+            WHERE idarchivocargadoestado='".$this->getIdArchivoCargadoEstado()."'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -189,7 +230,31 @@ class ArchivoCargadoEstado {
                 
                 while ($row = $base->Registro()){
                     $obj= new ArchivoCargadoEstado();
-                    $obj->setear($row['archivocargadoestado'], $row['idestadotipos'], $row['acedescripcion'], $row['idusuario'], $row['acefechaingreso'], $row['acefechafin'], $row['idarchivocargado']);
+
+                    $estadoTipos = NULL; 
+                    if ($row['idestadotipos'] != null) { 
+                        $estadoTipos = new EstadoTipos(); 
+                        $estadoTipos->setIdEstadoTipos($row['idestadotipos']); 
+                        $estadoTipos->cargar(); 
+                    }
+                
+                    $usuario = NULL; 
+                    if ($row['idusuario'] != null) { 
+                        $usuario = new Usuario(); 
+                        $usuario->setIdusuario($row['idusuario']); 
+                        $usuario->cargar(); 
+                    }
+
+                    $archivoCargado = NULL; 
+                    if ($row['idarchivocargado'] != null) { 
+                        $archivoCargado = new ArchivoCargado();
+                        $archivoCargado->setIdArchivoCargado($row['idarchivocargado']); 
+                        $archivoCargado->cargar(); 
+                    }
+
+
+                    $obj->setear($row['idarchivocargadoestado'], $estadoTipos->getIdEstadoTipos(), $row['acedescripcion'], $usuario->getIdUsuario(), $row['acefechaingreso'], $row['acefechafin'], $archivoCargado->getIdArchivoCargado());
+
                     array_push($arreglo, $obj);
                 }
                

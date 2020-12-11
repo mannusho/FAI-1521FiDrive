@@ -1,5 +1,7 @@
 <?php 
 
+include_once("usuario.php");
+
 class ArchivoCargado {
     private $idarchivocargado;
     private $acnombre;
@@ -16,12 +18,14 @@ class ArchivoCargado {
     
    
     public function __construct(){
-        
-        $this->idarchivocargado="";
+
+            // NOTA: si es un id, es porque entra un objeto.
+
+        $this->idarchivocargado=""; // es autoincrementable. 
         $this->acnombre="";
         $this->acdescripcion="";
         $this->acicono="";
-        $this->idusuario="";
+        $this->idusuario= new Usuario();
         $this->aclinkacceso="";
         $this->accantidaddescarga="";
         $this->accantidadusada="";
@@ -32,9 +36,9 @@ class ArchivoCargado {
     }
     public function setear($idArchivoCargado, $acNombre, $acDescripcion, $acIcono, $idUsuario, $acLinkAcceso, $acCantidadDescarga, $acCantidadUsada, $acFechaInicioCompartir, $AceFechaFinCompartir, $acProtegidoClave){
         $this->setIdArchivoCargado($idArchivoCargado);
-        $this->getAcNombre($acNombre);
-        $this->getAcDescripcion($acDescripcion);
-        $this->getAcIcono($acIcono);
+        $this->setAcNombre($acNombre);
+        $this->setAcDescripcion($acDescripcion);
+        $this->setAcIcono($acIcono);
         $this->setIdUsuario($idUsuario);
         $this->setAcLinkAcceso($acLinkAcceso);
         $this->setAcCantidadDescarga($acCantidadDescarga);
@@ -160,13 +164,21 @@ class ArchivoCargado {
     public function cargar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="SELECT * FROM archivocargado WHERE id = ".$this->getIdArchivoCargado();
+        $sql="SELECT * FROM archivocargado WHERE idarchivocargado = ".$this->getIdArchivoCargado();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
-                    $this->setear($row['idarchivocargado'], $row['acnombre'], $row['acdescripcion'], $row['acicono'], $row['idusuario'], $row['aclinkacceso'], $row['accantidaddescarga'], $row['accantidadusada'], $row['acfechainiciocompartir'], $row['acefechafincompartir'], $row['acprotegidoclave']);
+                    
+                    $usuario = NULL; 
+                    if ($row['idusuario'] != null) { 
+                        $usuario = new Usuario(); 
+                        $usuario->setIdusuario($row['idusuario']); 
+                        $usuario->cargar(); 
+                    }
+
+                    $this->setear($row['idarchivocargado'], $row['acnombre'], $row['acdescripcion'], $row['acicono'], $usuario, $row['aclinkacceso'], $row['accantidaddescarga'], $row['accantidadusada'], $row['acfechainiciocompartir'], $row['acefechafincompartir'], $row['acprotegidoclave']);
                     
                 }
             }
@@ -181,7 +193,29 @@ class ArchivoCargado {
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO archivocargado(idarchivocargado, acnombre, acdescripcion, acicono, idusuario, aclinkacceso, accantidaddescarga, accantidadusada, acfechainiciocompartir, acefechafincompartir, acprotegidoclave) VALUES('".$this->getIdArchivoCargado()."', '".$this->getAcNombre()."', '".$this->getAcDescripcion()."', '".$this->getAcIcono()."', '".$this->getIdUsuario()."', '".$this->getAcLinkAcceso()."', '".$this->getAcCantidadDescarga()."', '".$this->getAcCantidadUsada()."', '".$this->getAcFechaInicioCompartir()."', '".$this->getAceFechaFinCompartir()."', '".$this->getAcProtegidoClave()."');";
+        $sql="INSERT INTO archivocargado(
+          acnombre,
+          acdescripcion,
+          acicono, 
+          idusuario,
+          aclinkacceso,
+          accantidaddescarga,
+          accantidadusada, 
+          acfechainiciocompartir,
+          acefechafincompartir,
+          acprotegidoclave) 
+        VALUES(
+         '".$this->getAcNombre()."',
+          '".$this->getAcDescripcion()."'
+        , '".$this->getAcIcono()."',
+         '".$this->getIdUsuario()->getIdusuario()."'
+        , '".$this->getAcLinkAcceso()."',
+         '".$this->getAcCantidadDescarga()."'
+        , '".$this->getAcCantidadUsada()."',
+         '".$this->getAcFechaInicioCompartir()."'
+        , '".$this->getAceFechaFinCompartir()."',
+         '".$this->getAcProtegidoClave()."');";
+
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdArchivoCargado($elid);
@@ -198,7 +232,16 @@ class ArchivoCargado {
     public function modificar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="UPDATE archivocargado SET idarchivocargado='".$this->getIdArchivoCargado()."', acnombre='".$this->getAcNombre()."', acdescripcion='".$this->getAcDescripcion()."', acicono='".$this->getAcIcono()."', idusuario='".$this->getIdUsuario()."', aclinkacceso='".$this->getAcLinkAcceso()."', accantidaddescarga='".$this->getAcCantidadDescarga()."', accantidadusada='".$this->getAcCantidadUsada()."', acfechainiciocompartir='".$this->getAcFechaInicioCompartir()."', acefechafincompartir='".$this->getAceFechaFinCompartir()."', acprotegidoclave='".$this->getAcProtegidoClave()."',  WHERE idarchivocargado=".$this->getIdArchivoCargado();
+        $sql="UPDATE archivocargado SET acnombre='" . $this->getAcNombre() . "',
+            acdescripcion='" . $this->getAcDescripcion() . "',
+            acicono='" . $this->getAcIcono() . "',
+            idusuario='".$this->getIdUsuario()->getIdUsuario()."',
+            aclinkacceso='" . $this->getAcLinkAcceso() . "',
+            accantidaddescarga='" . $this->getAcCantidadDescarga() . "',
+            accantidadusada='" . $this->getAccantidadusada() . "',
+            acfechainiciocompartir='" . $this->getAcFechaInicioCompartir() . "',
+            acefechafincompartir='" . $this->getAceFechaFinCompartir() . "',
+            acprotegidoclave='" . $this->getAcProtegidoClave() . "' WHERE idarchivocargado='".$this->getIdArchivoCargado()."'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -227,7 +270,7 @@ class ArchivoCargado {
         return $resp;
     }
     
-    public static function listar($parametro=""){
+    public static function listar($parametro= ""){
         $arreglo = array();
         $base=new BaseDatos();
         $sql="SELECT * FROM archivocargado ";
@@ -240,7 +283,12 @@ class ArchivoCargado {
                 
                 while ($row = $base->Registro()){
                     $obj = new ArchivoCargado();
-                    $obj->setear($row['idarchivocargado'], $row['acnombre'], $row['acdescripcion'], $row['acicono'], $row['idusuario'], $row['aclinkacceso'], $row['accantidaddescarga'], $row['accantidadusada'], $row['acfechainiciocompartir'], $row['acefechafincompartir'], $row['acprotegidoclave']);
+
+                        $usuario = new Usuario(); 
+                        $usuario->setIdusuario($row['idusuario']); 
+                        $usuario->cargar(); 
+
+                    $obj->setear($row['idarchivocargado'], $row['acnombre'], $row['acdescripcion'], $row['acicono'], $usuario, $row['aclinkacceso'], $row['accantidaddescarga'], $row['accantidadusada'], $row['acfechainiciocompartir'], $row['acefechafincompartir'], $row['acprotegidoclave']);
                     array_push($arreglo, $obj);
                 }
                

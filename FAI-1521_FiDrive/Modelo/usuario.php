@@ -59,8 +59,7 @@ class Usuario {
         
     }
     public function setUsLogin($usLogin){
-        $this->uslogin = $usLogin;
-        
+        $this->uslogin = $usLogin;    
     }
 
     public function getUsClave(){
@@ -95,7 +94,7 @@ class Usuario {
     public function cargar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="SELECT * FROM usuario WHERE NroDni = ".$this->getIdUsuario();
+        $sql="SELECT * FROM usuario WHERE idusuario = ".$this->getIdUsuario();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if($res>-1){
@@ -116,7 +115,7 @@ class Usuario {
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO usuario(idusuario, usnombre, usapellido, uslogin, usclave, usactivo)  VALUES('".$this->getIdUsuario()."','".$this->getUsNombre()."','".$this->getUsApellido()."','".$this->getUsLogin()."','".$this->getUsClave()."','".$this->getUsActivo()."');";
+        $sql="INSERT INTO usuario( usnombre, usapellido, uslogin, usclave, usactivo)  VALUES('".$this->getUsNombre()."','".$this->getUsApellido()."','".$this->getUsLogin()."','".$this->getUsClave()."','".$this->getUsActivo()."');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdUsuario($elid);
